@@ -1,0 +1,15 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Aeron dependency for Aeron cluster functionality
+    implementation 'io.aeron:aeron-all:1.40.0'
+
+    // Example for logging (SLF4J with Logback)
+    implementation 'org.slf4j:slf4j-api:2.0.0-alpha1'
+}

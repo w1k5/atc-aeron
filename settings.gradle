@@ -1,2 +1,8 @@
 rootProject.name = 'atc-aeron'
 
+include 'components:weather-radar'
+include 'components:radar'
+include 'components:adsb'
+include 'components:core-atc'
+include 'components:outputs'
+include 'components:adapters'

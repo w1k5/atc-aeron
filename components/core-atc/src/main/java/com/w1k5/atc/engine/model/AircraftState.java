@@ -1,4 +1,5 @@
-package com.w1k5.atc.engine;
+package com.w1k5.atc.engine.model;
+
 public class AircraftState {
     private long positionX; // Position in centimeters (scaled by 100)
     private long positionY; // Position in centimeters (scaled by 100)
