@@ -1,0 +1,54 @@
+@startuml
+skinparam backgroundColor #F9F9F9
+skinparam componentStyle rectangle
+
+package "Data Sources" {
+  [Weather Radar] 
+  [Primary Radar] 
+  [Secondary Radar]
+  [ADS-B Feed]
+}
+
+package "Adapters" {
+  [Weather Data Adapter]
+  [Radar Adapter]
+  [ADS-B Adapter]
+}
+
+package "Core ATC System" {
+  [Aeron Cluster] <<Cluster>>
+  [Conflict Detection Algorithm]
+  [Sector Balancer]
+  [Weather Routing Algorithm]
+  [Shared State]
+}
+
+package "Outputs" {
+  [Controller Terminals]
+  [Airline Systems]
+  [Pilot Messaging]
+}
+
+' Connections with simplified descriptions
+[Weather Radar] --> [Weather Data Adapter] : Weather Data \nUDP/Broadcast
+[Primary Radar] --> [Radar Adapter] : Aircraft Tracks \nTCP
+[Secondary Radar] --> [Radar Adapter] : Transponder Data \nTCP
+[ADS-B Feed] --> [ADS-B Adapter] : Real-Time Positions \nUDP
+
+[Weather Data Adapter] --> [Aeron Cluster] : Weather Conditions \nAeron/UDP
+[Radar Adapter] --> [Aeron Cluster] : Aircraft Tracks \nAeron/UDP
+[ADS-B Adapter] --> [Aeron Cluster] : Aircraft Positions \nAeron/UDP
+
+[Aeron Cluster] --> [Conflict Detection Algorithm] : Aircraft State Updates
+[Aeron Cluster] --> [Sector Balancer] : Sector Traffic Load
+[Aeron Cluster] --> [Weather Routing Algorithm] : Trajectories + Weather Data
+
+[Conflict Detection Algorithm] --> [Shared State] : Resolved Plans
+[Sector Balancer] --> [Shared State] : Sector Assignments
+[Weather Routing Algorithm] --> [Shared State] : Weather-Optimized Routes
+
+[Shared State] --> [Controller Terminals] : Traffic Updates \nWebSocket
+[Shared State] --> [Airline Systems] : Schedule Updates \nHTTPS
+[Shared State] --> [Pilot Messaging] : Flight Plans \nCPDLC/UHF
+
+@enduml
