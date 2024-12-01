@@ -1,4 +1,4 @@
-package com.w1k5.atc.engine.model;
+package com.w1k5.atc.engine.domain;
 
 public class AircraftState {
     private long positionX; // Position in centimeters (scaled by 100)
@@ -6,11 +6,12 @@ public class AircraftState {
     private long velocityX; // Velocity in centimeters per second (scaled by 100)
     private long velocityY; // Velocity in centimeters per second (scaled by 100)
     private long altitude;  // Altitude in centimeters (scaled by 100)
+    private int sectorId;
 
     private static final int SCALE = 100; // Scale factor (100 for centimeters)
 
     // Constructor
-    public AircraftState(long positionX, long positionY, long velocityX, long velocityY, long altitude) {
+    public AircraftState(long positionX, long positionY, long velocityX, long velocityY, long altitude, int sectorId) {
         this.positionX = positionX;
         this.positionY = positionY;
         this.velocityX = velocityX;
@@ -77,5 +78,13 @@ public class AircraftState {
     public String toString() {
         return String.format("AircraftState [positionX=%.2f m, positionY=%.2f m, velocityX=%.2f m/s, velocityY=%.2f m/s, altitude=%.2f m]",
                 getPositionXInMeters(), getPositionYInMeters(), getVelocityXInMetersPerSecond(), getVelocityYInMetersPerSecond(), getAltitudeInMeters());
+    }
+
+    public int getSectorId() {
+        return sectorId;
+    }
+
+    public void setSectorId(int alternativeSector) {
+        this.sectorId = alternativeSector;
     }
 }

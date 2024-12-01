@@ -16,6 +16,7 @@
             <option value="$PROJECT_DIR$/components/outputs" />
             <option value="$PROJECT_DIR$/components/radar" />
             <option value="$PROJECT_DIR$/components/weather-radar" />
+            <option value="$PROJECT_DIR$/test" />
           </set>
         </option>
       </GradleProjectSettings>
