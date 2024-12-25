@@ -1,9 +1,9 @@
 package com.w1k5.atc.engine.application;
 
 public enum AdapterType {
-    WEATHER("weatherData"),
-    RADAR("radarData"),
-    ADSB("adsbData");
+    WEATHER("weather"),
+    RADAR("radar"),
+    ADSB("adsb");
 
     private final String configPrefix;
 

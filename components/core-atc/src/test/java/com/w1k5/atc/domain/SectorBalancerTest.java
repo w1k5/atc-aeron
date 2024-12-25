@@ -54,7 +54,7 @@ public class SectorBalancerTest {
 
     @Test
     public void testAssignSectorWhenAircraftIsOutOfBounds() {
-        // Create an aircraft outside of any sector
+        // Create an aircraft outside any sector
         AircraftState aircraftOutOfBounds = new AircraftState(2000, 2000, 20, 20, 5000, -1);
 
         sectorBalancer.assignSector(aircraftOutOfBounds);

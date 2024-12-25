@@ -4,10 +4,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class ConfigManager implements AutoCloseable {
-    private Properties config;
+public class PropertiesLoader {
 
-    public Properties loadConfig(String configFileName) {
+    private final Properties properties;
+
+    public PropertiesLoader(String filePath) {
+        this.properties = loadProperties(filePath);
+    }
+
+    public Properties loadProperties(String configFileName) {
         Properties properties = new Properties();
         try (InputStream input = getClass().getClassLoader().getResourceAsStream(configFileName)) {
             if (input == null) {
@@ -21,19 +26,10 @@ public class ConfigManager implements AutoCloseable {
     }
 
     public String getProperty(String key) {
-        return config.getProperty(key);
+        return properties.getProperty(key);
     }
 
     public int getIntProperty(String key) {
-        String value = config.getProperty(key);
-        if (value == null) {
-            throw new IllegalArgumentException("Property " + key + " not found");
-        }
-        return Integer.parseInt(value);
-    }
-
-    @Override
-    public void close() {
-        // Implement any necessary cleanup (e.g., closing streams) here if needed
+        return Integer.parseInt(properties.getProperty(key));
     }
 }
