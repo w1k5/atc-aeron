@@ -10,8 +10,4 @@ public enum AdapterType {
     AdapterType(String configPrefix) {
         this.configPrefix = configPrefix;
     }
-
-    public String getConfigPrefix() {
-        return configPrefix;
-    }
 }
