@@ -32,4 +32,11 @@ public class Sector {
     public int getId() {
         return id;
     }
+    
+    public long getMinX() { return minX; }
+    public long getMinY() { return minY; }
+    public long getMaxX() { return maxX; }
+    public long getMaxY() { return maxY; }
+    public long getMinAltitude() { return minAltitude; }
+    public long getMaxAltitude() { return maxAltitude; }
 }
