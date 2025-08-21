@@ -1,4 +1,4 @@
-package com.w1k5.atc.engine.domain;
+package com.w1k5.atc.engine.domain.conflict;
 
 import java.util.List;
 import java.util.Objects;

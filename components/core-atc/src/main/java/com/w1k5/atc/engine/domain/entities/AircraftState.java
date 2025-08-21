@@ -1,4 +1,4 @@
-package com.w1k5.atc.engine.domain;
+package com.w1k5.atc.engine.domain.entities;
 
 public class AircraftState {
     private long positionX; // Position in centimeters (scaled by 100)

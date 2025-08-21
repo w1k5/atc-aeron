@@ -1,4 +1,7 @@
-package com.w1k5.atc.engine.domain;
+package com.w1k5.atc.engine.domain.entities;
+
+import com.w1k5.atc.engine.domain.constraints.AltitudeConstraints;
+import com.w1k5.atc.engine.domain.constraints.SpeedConstraints;
 
 import java.util.List;
 import java.util.Objects;

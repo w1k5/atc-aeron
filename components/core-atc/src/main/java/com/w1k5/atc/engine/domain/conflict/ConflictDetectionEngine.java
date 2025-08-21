@@ -1,4 +1,8 @@
-package com.w1k5.atc.engine.domain;
+package com.w1k5.atc.engine.domain.conflict;
+
+import com.w1k5.atc.engine.domain.constraints.AircraftPerformance;
+import com.w1k5.atc.engine.domain.entities.Flight;
+import com.w1k5.atc.engine.domain.separation.SeparationMinima;
 
 import java.util.*;
 import java.util.stream.Collectors;

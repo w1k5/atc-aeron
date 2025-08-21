@@ -1,4 +1,6 @@
-package com.w1k5.atc.engine.domain;
+package com.w1k5.atc.engine.domain.sector;
+
+import com.w1k5.atc.engine.domain.entities.AircraftState;
 
 import java.util.List;
 

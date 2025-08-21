@@ -1,4 +1,6 @@
-package com.w1k5.atc.engine.domain;
+package com.w1k5.atc.engine.domain.separation;
+
+import com.w1k5.atc.engine.domain.constraints.AircraftPerformance;
 
 /**
  * Defines the minimum separation distances required between aircraft.

@@ -1,8 +1,8 @@
 package com.w1k5.atc.domain;
 
-import com.w1k5.atc.engine.domain.AircraftState;
-import com.w1k5.atc.engine.domain.Sector;
-import com.w1k5.atc.engine.domain.SectorBalancer;
+import com.w1k5.atc.engine.domain.entities.AircraftState;
+import com.w1k5.atc.engine.domain.sector.Sector;
+import com.w1k5.atc.engine.domain.sector.SectorBalancer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

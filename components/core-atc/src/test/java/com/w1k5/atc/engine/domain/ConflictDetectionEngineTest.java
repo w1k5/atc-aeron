@@ -1,5 +1,16 @@
 package com.w1k5.atc.engine.domain;
 
+import com.w1k5.atc.engine.domain.conflict.Conflict;
+import com.w1k5.atc.engine.domain.conflict.ConflictDetectionEngine;
+import com.w1k5.atc.engine.domain.conflict.ConflictDetectionStats;
+import com.w1k5.atc.engine.domain.constraints.AircraftPerformance;
+import com.w1k5.atc.engine.domain.constraints.AltitudeConstraints;
+import com.w1k5.atc.engine.domain.constraints.SpeedConstraints;
+import com.w1k5.atc.engine.domain.entities.AircraftState;
+import com.w1k5.atc.engine.domain.entities.Flight;
+import com.w1k5.atc.engine.domain.entities.FlightIntent;
+import com.w1k5.atc.engine.domain.entities.Waypoint;
+import com.w1k5.atc.engine.domain.separation.SeparationMinima;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -37,7 +48,7 @@ class ConflictDetectionEngineTest {
 
         FlightIntent intent = new FlightIntent("FL001", waypoints, speedConstraints, altitudeConstraints, "SID1", "STAR1");
 
-        AircraftPerformance performance1 = new AircraftPerformance("B737", AircraftPerformance.WakeTurbulenceCategory.MEDIUM, 
+        AircraftPerformance performance1 = new AircraftPerformance("B737", AircraftPerformance.WakeTurbulenceCategory.MEDIUM,
                                                                  2000, 2000, 400, 200, 41000);
         AircraftPerformance performance2 = new AircraftPerformance("A320", AircraftPerformance.WakeTurbulenceCategory.MEDIUM, 
                                                                  1800, 1800, 380, 180, 39000);
