@@ -4,8 +4,9 @@ import io.aeron.*;
 import io.aeron.archive.*;
 import io.aeron.archive.client.AeronArchive;
 import io.aeron.cluster.*;
+import io.aeron.cluster.service.ClusteredServiceContainer;
 import io.aeron.driver.*;
-import io.aeron.samples.cluster.tutorial.BasicAuctionClusterClient;
+
 import org.agrona.concurrent.*;
 import org.agrona.*;
 
@@ -110,14 +111,26 @@ public class ClusteredServiceNode {
                 .ingressChannel("aeron:udp?endpoint=localhost:8000")
                 .egressChannel("aeron:udp?endpoint=localhost:8001");
 
+        // Create our ATC clustered service
+        ClusteredServiceContainer.Context serviceContext = new ClusteredServiceContainer.Context()
+                .clusteredService(new MyClusteredService())
+                .aeronDirectoryName(aeronDirName);
+
         System.out.println("[ClusteredServiceNode] Node initialized. Awaiting connections");
 
         try (ClusteredMediaDriver clusteredMediaDriver =
-                     ClusteredMediaDriver.launch(mediaDriverContext, archiveContext, consensusModuleContext)) {
+                     ClusteredMediaDriver.launch(mediaDriverContext, archiveContext, consensusModuleContext);
+             ClusteredServiceContainer serviceContainer =
+                     ClusteredServiceContainer.launch(serviceContext)) {
+            
+            System.out.println("[ClusteredServiceNode] ATC cluster and service started successfully");
+            System.out.println("[ClusteredServiceNode] Ingress: localhost:8000, Egress: localhost:8001");
+            
             barrier.await();
             System.out.println("[ClusteredServiceNode] Node shutting down.");
         } catch (Exception e) {
-            System.err.println("[ERROR] Failed to start ClusteredMediaDriver: " + e.getMessage());
+            System.err.println("[ERROR] Failed to start cluster or service: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
