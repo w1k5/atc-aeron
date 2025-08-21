@@ -10,6 +10,12 @@ dependencies {
     // Aeron dependency for Aeron cluster functionality
     implementation 'io.aeron:aeron-all:1.40.0'
 
+    // SBE (Simple Binary Encoding) for message codecs
+    implementation 'uk.co.real-logic:sbe-all:1.34.1'
+
+    // Agrona utilities for high-performance collections and buffers
+    implementation 'org.agrona:agrona:1.20.0'
+
     // SLF4J API
     implementation 'org.slf4j:slf4j-api:2.0.9'
 
