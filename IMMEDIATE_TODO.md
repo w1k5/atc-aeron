@@ -2,22 +2,10 @@
 
 ## Priority 1: Fix Current Issues
 
-### Fix ClusteredServiceNode
-- [ ] Remove tutorial import: `import io.aeron.samples.cluster.tutorial.BasicAuctionClusterClient;`
-- [ ] Integrate `MyClusteredService` with the cluster startup
-- [ ] Add proper error handling and graceful shutdown
-
 ### Fix MyClusteredService
-- [ ] Update method signature: `onStart(Cluster cluster, Image image)` → `onStart(ClusterContext ctx)`
-- [ ] Add proper state initialization and cleanup
 - [ ] Implement real message processing instead of just logging
 
 ## Priority 2: Add Missing Dependencies
-
-### Update core-atc/build.gradle
-- [ ] Add SBE dependency: `implementation 'uk.co.real-logic:sbe-all:1.34.1'`
-- [ ] Add Agrona utilities: `implementation 'org.agrona:agrona:1.20.0'`
-- [ ] Add testing dependencies: `testImplementation 'org.mockito:mockito-core:5.8.0'`
 
 ### Update weather-radar/build.gradle
 - [ ] Add SBE dependency for message compatibility

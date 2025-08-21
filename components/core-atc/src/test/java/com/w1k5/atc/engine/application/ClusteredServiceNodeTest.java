@@ -23,8 +23,9 @@ class ClusteredServiceNodeTest {
         assertNotNull(members);
         assertTrue(members.contains("localhost"));
         assertTrue(members.contains("127.0.0.1"));
-        assertTrue(members.contains("9000")); // Node 0, offset 0
-        assertTrue(members.contains("9100")); // Node 1, offset 0
+        // The clusterMembers method uses offsets 1-5, not 0
+        assertTrue(members.contains("9001")); // Node 0, offset 1
+        assertTrue(members.contains("9101")); // Node 1, offset 1
     }
 
     @Test
