@@ -1,6 +1,7 @@
 package com.w1k5.atc.engine.domain.sector;
 
 import com.w1k5.atc.engine.domain.entities.AircraftState;
+import com.w1k5.atc.engine.domain.entities.ComplexityCalculator;
 import com.w1k5.atc.engine.domain.constraints.AircraftPerformance;
 import com.w1k5.atc.engine.domain.entities.FlightIntent;
 import com.w1k5.atc.engine.domain.entities.Flight;
