@@ -12,9 +12,11 @@
 - [ ] Add Agrona utilities for performance
 
 ### Create web-admin component
-- [ ] Create `components/web-admin/` directory structure
-- [ ] Add `components/web-admin/build.gradle` with Spring Boot dependencies
-- [ ] Add Spring Boot Web and WebSocket dependencies
+- [ ] Create `components/admin-gateway/` directory structure
+- [ ] Add `components/admin-gateway/build.gradle` with Spring Boot dependencies
+- [ ] Add Spring Boot Web, WebSocket, and Aeron client dependencies
+- [ ] Create `ui/admin/` directory for React frontend
+- [ ] Add `ui/admin/package.json` with React, TypeScript, and Vite dependencies
 
 ## Priority 3: Create Basic Message Flow
 
@@ -39,13 +41,13 @@
 ### Design WebSocket Architecture
 - [ ] Design WebSocket message format for aircraft positions
 - [ ] Plan REST API structure for monitoring endpoints
-- [ ] Choose frontend technology (React, Vue, or vanilla JS)
-- [ ] Design real-time visualization approach
+- [ ] Create React hooks for WebSocket management
+- [ ] Design React component architecture for real-time updates
 
 ### Create Basic Web Infrastructure
 - [ ] Create `WebSocketController` for real-time updates
 - [ ] Create `MessageMonitoringController` for REST endpoints
-- [ ] Setup basic HTML template with JavaScript
+- [ ] Setup React development environment with Vite
 - [ ] Add CORS configuration for browser access
 
 ## Priority 5: Basic Testing
@@ -65,18 +67,27 @@
 - `components/core-atc/src/main/java/com/w1k5/atc/engine/messaging/`
 - `components/core-atc/src/main/java/com/w1k5/atc/engine/engine/`
 - `components/core-atc/src/test/java/com/w1k5/atc/engine/engine/ConflictProbeTest.java`
-- `components/web-admin/build.gradle`
-- `components/web-admin/src/main/java/com/w1k5/atc/web/WebSocketController.java`
-- `components/web-admin/src/main/java/com/w1k5/atc/web/MessageMonitoringController.java`
-- `components/web-admin/src/main/resources/static/index.html`
-- `components/web-admin/src/main/resources/static/js/aircraft-map.js`
+- `components/admin-gateway/build.gradle`
+- `components/admin-gateway/src/main/java/com/w1k5/atc/admin/AdminGatewayApplication.java`
+- `components/admin-gateway/src/main/java/com/w1k5/atc/admin/controller/AdminController.java`
+- `components/admin-gateway/src/main/java/com/w1k5/atc/admin/service/MessageMonitoringService.java`
+- `components/admin-gateway/src/main/java/com/w1k5/atc/admin/service/AeronClientService.java`
+- `ui/admin/package.json`
+- `ui/admin/src/App.tsx`
+- `ui/admin/src/components/AircraftMap.tsx`
+- `ui/admin/src/components/MessageDashboard.tsx`
+- `ui/admin/src/components/AdminControls.tsx`
+- `ui/admin/src/hooks/useWebSocket.ts`
+- `ui/admin/src/types/index.ts`
+- `ui/admin/vite.config.ts`
+- `ui/admin/tsconfig.json`
 
 ### Files to Modify
 - `components/core-atc/build.gradle` - Add dependencies
 - `components/core-atc/src/main/java/com/w1k5/atc/engine/application/ClusteredServiceNode.java` - Fix imports
 - `components/core-atc/src/main/java/com/w1k5/atc/engine/application/MyClusteredService.java` - Fix method signatures
 - `components/core-atc/src/main/java/com/w1k5/atc/engine/domain/AircraftState.java` - Enhance with timestamps
-- `settings.gradle` - Add web-admin module
+- `settings.gradle` - Add admin-gateway module
 
 ## Success Criteria for This Week
 
@@ -85,7 +96,8 @@
 - [ ] Simple conflict detection operational
 - [ ] At least one test passing
 - [ ] Can generate and send basic advisories
-- [ ] Web admin component created with basic structure
+- [ ] Admin gateway component created with basic structure
+- [ ] UI admin directory created with frontend setup
 - [ ] WebSocket architecture planned and documented
 
 ## Time Estimates

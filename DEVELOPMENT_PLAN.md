@@ -51,29 +51,31 @@ The project currently has a basic Aeron cluster infrastructure with:
 
 ### Phase 2.5: Web Admin UI & Real-time Monitoring (Weeks 4-5)
 
-#### 2.5.1 Web Infrastructure Setup
-- [ ] **Create `web-admin` component** - New Gradle module for web interface
-- [ ] **Add Spring Boot Web** - REST API endpoints and WebSocket support
-- [ ] **Setup WebSocket streaming** - Real-time aircraft position updates
+#### 2.5.1 Admin Gateway Infrastructure
+- [ ] **Create `admin-gateway` component** - New Gradle module for admin services
+- [ ] **Add Spring Boot dependencies** - Web, WebSocket, and Aeron client
+- [ ] **Setup Aeron client integration** - Connect to cluster as external client
 - [ ] **Add CORS configuration** - Allow browser access from different origins
 
-#### 2.5.2 Real-time Aircraft Visualization
-- [ ] **Implement WebSocket endpoints** - `/ws/aircraft-positions` for live updates
-- [ ] **Create aircraft position streaming** - Real-time lat/lon/altitude updates
-- [ ] **Add trajectory prediction display** - Show predicted flight paths
-- [ ] **Implement sector boundary visualization** - Display airspace sectors
+#### 2.5.2 Message Monitoring & Aggregation
+- [ ] **Implement cluster message subscription** - Subscribe to ingress/egress streams
+- [ ] **Create message aggregation service** - Collect and process monitoring data
+- [ ] **Add message statistics tracking** - Counts, latency, throughput metrics
+- [ ] **Implement conflict detection monitoring** - Track detected conflicts
 
-#### 2.5.3 Message Flow Monitoring
-- [ ] **Create message monitoring endpoints** - `/api/messages/ingress`, `/api/messages/egress`
-- [ ] **Add message statistics dashboard** - Message counts, latency, throughput
-- [ ] **Implement conflict visualization** - Show detected conflicts on map
-- [ ] **Add advisory display** - Show generated advisories in real-time
+#### 2.5.3 Admin API & WebSocket Services
+- [ ] **Create REST API endpoints** - `/api/admin/messages`, `/api/admin/aircraft`, `/api/admin/conflicts`
+- [ ] **Implement WebSocket streaming** - `/ws/admin/aircraft-positions` for live updates
+- [ ] **Add advisory monitoring** - Track generated advisories and their status
+- [ ] **Create system health endpoints** - Cluster status, performance metrics
 
-#### 2.5.4 Interactive Admin Controls
-- [ ] **Create aircraft injection interface** - Add synthetic aircraft for testing
-- [ ] **Add conflict resolution controls** - Manual override of automated decisions
-- [ ] **Implement replay controls** - Play/pause/fast-forward through captured data
-- [ ] **Add system health monitoring** - Cluster status, performance metrics
+#### 2.5.4 Web Frontend Development
+- [ ] **Create `ui/admin/` directory** - Standalone React admin interface
+- [ ] **Setup React development environment** - Vite, TypeScript, ESLint, Prettier
+- [ ] **Create React component architecture** - AircraftMap, MessageDashboard, AdminControls
+- [ ] **Implement aircraft visualization** - React-based map with real-time positions
+- [ ] **Add message flow dashboard** - Monitor ingress/egress message streams
+- [ ] **Create admin control panels** - Aircraft injection, conflict resolution, replay controls
 
 ### Phase 3: External Integration (Weeks 5-6)
 
@@ -151,15 +153,27 @@ com.w1k5.atc.engine
 components/
 ├─ core-atc/            // Core ATC engine
 ├─ weather-radar/        // Weather processing
-└─ web-admin/           // Web interface (NEW)
+└─ admin-gateway/        // Admin interface gateway (NEW)
+
+ui/
+├─ admin/                // Web admin interface (NEW)
+└─ shared/               // Shared UI components (NEW)
 ```
 
 ### Web Admin UI Architecture
-- **Spring Boot Web** - REST API and WebSocket server
-- **WebSocket streaming** - Real-time aircraft position updates
+- **Admin Gateway** - Separate Spring Boot service acting as intermediary
+- **WebSocket streaming** - Real-time aircraft position updates via gateway
 - **Interactive map visualization** - Aircraft positions, trajectories, sectors
-- **Message monitoring** - Ingress/egress message flow display
+- **Message monitoring** - Ingress/egress message flow display via gateway
 - **Admin controls** - System management and testing interfaces
+
+### Admin Gateway Design
+- **Spring Boot service** - Runs independently from core ATC engine
+- **Aeron client integration** - Connects to cluster as external client
+- **REST API endpoints** - `/api/admin/*` for administrative functions
+- **WebSocket server** - Real-time streaming to web clients
+- **Message aggregation** - Collects and processes monitoring data
+- **Security layer** - Authentication and authorization for admin access
 
 ### Aeron Cluster Integration
 - **Single deterministic thread** for all ATC processing
@@ -236,10 +250,12 @@ components/
 - **ADS-B data** - Aircraft position feeds
 
 ### Web UI Technology Stack
-- **Backend**: Spring Boot with WebSocket support
-- **Frontend**: Modern JavaScript (ES6+) with WebSocket API
-- **Visualization**: Canvas API or SVG for aircraft movement
-- **Styling**: CSS Grid/Flexbox for responsive layout
-- **Build**: Gradle for backend, npm/yarn for frontend assets
+- **Backend**: Spring Boot with WebSocket support (admin-gateway)
+- **Frontend**: React with TypeScript for type safety (ui/admin)
+- **Build System**: Vite for fast development and optimized builds
+- **Visualization**: React-based map components (react-leaflet or similar)
+- **Styling**: CSS-in-JS or Tailwind CSS for modern styling
+- **State Management**: React Context or Zustand for application state
+- **Package Management**: npm/yarn for frontend, Gradle for backend
 
 This plan provides a realistic roadmap that builds on your existing code while creating a production-ready ATC system with a comprehensive web admin interface. Each phase delivers working functionality that can be tested and validated before moving to the next phase. 
