@@ -31,14 +31,8 @@ else
     echo "✅ Dependencies already installed"
 fi
 
-# Check if backend is running
-echo "🔍 Checking backend connection..."
-if curl -s http://localhost:8080/api/admin/health > /dev/null; then
-    echo "✅ Backend is running on localhost:8080"
-else
-    echo "⚠️  Warning: Backend not responding on localhost:8080"
-    echo "   Make sure the ATC Aeron backend is running before using the UI"
-fi
+# Note: Backend connection check removed - UI will run independently
+echo "ℹ️  UI will run independently (no backend proxy configured)"
 
 echo ""
 echo "🌐 Starting development server..."
@@ -48,3 +42,5 @@ echo ""
 
 # Start the development server
 npm start
+
+
